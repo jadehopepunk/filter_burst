@@ -1,17 +1,20 @@
 var path = require('path');
 var webpack = require('webpack');
 var publicPath = 'http://localhost:3000/';
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var CopyWebpackPlugin = require("copy-webpack-plugin");
 
 module.exports = {
   devtool: 'source-map',
   entry: [
+    path.join(__dirname, 'web/static/css/app.css'),
     path.join(__dirname, 'web/static/js/entry.jsx'),
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
   ],
   output: {
-    path: path.join(__dirname, '/priv/static/js'),
-    filename: 'index.bundle.js',
+    path: path.join(__dirname, '/priv/static'),
+    filename: 'js/index.bundle.js',
     publicPath: publicPath,
   },
   module: {
@@ -22,9 +25,15 @@ module.exports = {
         include: path.join(__dirname, 'web/static/js'),
         exclude: /node_modules/,
       },
+      {
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract("style", "css")
+      }
     ],
   },
   plugins: [
+    new ExtractTextPlugin("css/app.css"),
+    new CopyWebpackPlugin([{ from: "./web/static/assets" }]),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
   ],
