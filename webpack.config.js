@@ -7,7 +7,7 @@ var CopyWebpackPlugin = require("copy-webpack-plugin");
 module.exports = {
   devtool: 'source-map',
   entry: [
-    path.join(__dirname, 'web/static/css/app.css'),
+    path.join(__dirname, 'web/static/css/app.less'),
     path.join(__dirname, 'web/static/js/entry.jsx'),
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
@@ -26,9 +26,13 @@ module.exports = {
         exclude: /node_modules/,
       },
       {
-        test: /\.css$/,
-        loader: ExtractTextPlugin.extract("style", "css")
-      }
+        test: /\.(css|less)$/,
+        loader: ExtractTextPlugin.extract("style", "css!less")
+      },
+      {
+        test: /.(png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/,
+        loader: 'url-loader?limit=100000'
+      },
     ],
   },
   plugins: [
@@ -43,7 +47,7 @@ module.exports = {
       'node_modules',
       'web/static/js',
     ],
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['', '.js', '.jsx', '.css', '.less'],
     alias: {
       phoenix: path.join(__dirname, '/deps/phoenix/priv/static/phoenix.js'),
     },
