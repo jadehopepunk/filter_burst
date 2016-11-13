@@ -16,7 +16,8 @@ const StoryList = (props) => (
       <FontAwesome name={typeIcons[props.type]} size='2x' />
     </div>
     <div className={css(styles.content)}>
-      <Lorem count={2} />
+      {props.text && <p>{props.text}</p>}
+      <Lorem count={props.text ? 1 : 2} />
     </div>
   </div>
 )
