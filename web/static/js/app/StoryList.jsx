@@ -3,9 +3,11 @@ import Story from './Story'
 
 const StoryList = (props) => (
   <div>
-    <Story />
-    <Story />
-    <Story />
+    <Story type="idea" />
+    <Story type="entertainment" />
+    <Story type="personal" />
+    <Story type="idea" />
+    <Story type="news" />
   </div>
 );
 

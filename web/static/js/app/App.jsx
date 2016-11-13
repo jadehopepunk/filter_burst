@@ -6,7 +6,13 @@ const App = (props) => (
   <div>
     <NavBar />
     <div className="container">
-      <StoryList />
+      <div className="row">
+        <div className="col-md-8">
+          <StoryList />
+        </div>
+        <div className="col-md-4">
+        </div>
+      </div>
     </div>
   </div>
 );
