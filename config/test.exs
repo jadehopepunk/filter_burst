@@ -10,10 +10,10 @@ config :filter_burst, FilterBurst.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :filter_burst, FilterBurst.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "filter_burst_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+# config :filter_burst, FilterBurst.Repo,
+#   adapter: Ecto.Adapters.Postgres,
+#   username: "postgres",
+#   password: "postgres",
+#   database: "filter_burst_test",
+#   hostname: "localhost",
+#   pool: Ecto.Adapters.SQL.Sandbox
