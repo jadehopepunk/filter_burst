@@ -1,16 +1,13 @@
-import React from 'react';
+import React from 'react'
+import NavBar from './NavBar'
+import StoryList from './StoryList'
 
 const App = (props) => (
-  <div className="container">
-    <header className="header">
-      <nav role="navigation">
-        <ul className="nav nav-pills pull-right">
-          <li><a href="http://www.phoenixframework.org/docs">Get Started</a></li>
-        </ul>
-      </nav>
-      <span className="logo"></span>
-    </header>
-    {props.children}
+  <div>
+    <NavBar />
+    <div className="container">
+      <StoryList />
+    </div>
   </div>
 );
 
