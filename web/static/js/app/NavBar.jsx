@@ -10,7 +10,7 @@ const NavBar = (props) => (
       <Navbar.Toggle />
     </Navbar.Header>
     <Navbar.Collapse>
-      <Nav>
+      {/*<Nav>
         <NavItem eventKey={1} href="#">Link</NavItem>
         <NavItem eventKey={2} href="#">Link</NavItem>
         <NavDropdown eventKey={3} title="Dropdown" id="basic-nav-dropdown">
@@ -24,7 +24,7 @@ const NavBar = (props) => (
       <Nav pullRight>
         <NavItem eventKey={1} href="#">Link Right</NavItem>
         <NavItem eventKey={2} href="#">Link Right</NavItem>
-      </Nav>
+      </Nav>*/}
     </Navbar.Collapse>
   </Navbar>
 );

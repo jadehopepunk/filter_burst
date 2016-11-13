@@ -1,6 +1,7 @@
 import React from 'react'
 import NavBar from './NavBar'
 import StoryList from './StoryList'
+import FeedSettings from './FeedSettings'
 
 const App = (props) => (
   <div>
@@ -11,6 +12,7 @@ const App = (props) => (
           <StoryList />
         </div>
         <div className="col-md-4">
+          <FeedSettings />
         </div>
       </div>
     </div>
