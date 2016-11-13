@@ -5,7 +5,7 @@ const NavBar = (props) => (
   <Navbar inverse collapseOnSelect>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#">Filter Burst</a>
+        <a href="#">Filter Burst</a> - an experiment in diverse yet civil conversation
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
