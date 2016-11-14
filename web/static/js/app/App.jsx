@@ -3,12 +3,13 @@ import { StyleSheet, css } from 'aphrodite'
 import NavBar from './NavBar'
 import StoryList from './StoryList'
 import FeedSettings from './FeedSettings'
+import SiteFooter from './SiteFooter'
 
 const App = (props) => (
-  <div>
+  <div className={css(styles.pageParts)}>
     <NavBar />
-    <div className="container">
-      <div className={"alert alert-info " + css(styles.notice)}>
+    <div className={"container " + css(styles.container)}>
+      <div className="alert alert-info">
         <h4>How do we fix social media?</h4>
         <p>
           It feels like the US has been torn in half. How do we social media conversations
@@ -30,14 +31,21 @@ const App = (props) => (
           <FeedSettings />
         </div>
       </div>
+
     </div>
+    <SiteFooter />
   </div>
 );
 
 const styles = StyleSheet.create({
-  notice: {
-    // padding: 10,
-  }
+  pageParts: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: 1,
+  },
+  container: {
+    paddingBottom: 30,
+  },
 })
 
 export default App;
