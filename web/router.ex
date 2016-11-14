@@ -17,7 +17,7 @@ defmodule FilterBurst.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/.well-known/acme-challenge/3Z7gsxr7XQ6cGmLacIDJaj40OI-nM0SL5cl8U1Wg-f4", PageController, :certbot
+    get "/.well-known/acme-challenge/BrnJQMR0_YgulKCHBx5w4WgzzU3f-h5_kLY6C83_xFg", PageController, :certbot
   end
 
   # Other scopes may use custom stacks.
