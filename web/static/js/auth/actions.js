@@ -8,6 +8,7 @@ export const userFetched = createAction('USER_FETCHED', user => user)
 
 export const handleFacebookResponse = (facebookPayload) => {
   return (dispatch) => {
+    console.log('facebook payload', facebookPayload)
     return axios({
       url: "http://localhost:4000/api/users",
       method: 'post',
