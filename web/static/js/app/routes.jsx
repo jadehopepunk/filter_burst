@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import App from './App';
-import Main from '../main/Main';
+import Layout from './Layout';
+import FeedPage from '../feeds/FeedPage';
 
 const routes = (
-  <Route path="/" component={App}>
-    <IndexRoute component={Main} />
+  <Route path="/" component={Layout}>
+    <IndexRoute component={FeedPage} />
   </Route>
 );
 
