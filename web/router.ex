@@ -25,4 +25,6 @@ defmodule FilterBurst.Router do
 
     resources "/users", Api.UserController, only: [:create]
   end
+
+  forward "/graphql", Absinthe.Plug, schema: FilterBurst.Schema
 end
