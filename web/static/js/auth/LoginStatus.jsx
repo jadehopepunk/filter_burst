@@ -13,7 +13,7 @@ const LoginStatus = (props) => {
       fields="id,name,email"
       scope="public_profile,email,user_friends"
       cssClass="btn btn-link btn-facebook"
-      callback={props.actions.facebookLoginSuccess} />
+      callback={props.actions.handleFacebookResponse} />
   )
 }
 
