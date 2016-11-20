@@ -20,8 +20,9 @@ defmodule FilterBurst.Router do
     get "/.well-known/acme-challenge/BrnJQMR0_YgulKCHBx5w4WgzzU3f-h5_kLY6C83_xFg", PageController, :certbot
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", FilterBurst do
-  #   pipe_through :api
-  # end
+  scope "/api", FilterBurst do
+    pipe_through :api
+
+    resources "/users", Api.UserController, only: [:create]
+  end
 end
