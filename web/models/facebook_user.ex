@@ -14,7 +14,6 @@ defmodule FilterBurst.FacebookUser do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:user_id, :name, :email, :access_token, :expires_in, :picture_url])
-    |> validate_required([:user_id])
+    |> cast(params, [:user_id], [:name, :email, :access_token, :expires_in, :picture_url])
   end
 end
