@@ -1,4 +1,5 @@
 import gql from 'graphql-tag'
+import _ from 'lodash'
 
 // export const facebookLoginSuccess = createAction('FACEBOOK_LOGIN_SUCCESS',
 //   facebookPayload => facebookPayload)
@@ -7,15 +8,17 @@ import gql from 'graphql-tag'
 
 
 function generateMutationObject(facebookPayload) {
+  const user = _.pick(facebookPayload, ['id', 'name', 'email', 'accessToken', 'expiresIn'])
+
   return {
     mutation: gql`
-     mutation updateFacebookUser($id: String!, $name: String!) {
-       updateFacebookUser(userId: $id, name: $name) {
-         userId
+     mutation updateFacebookUser($id: String!, $name: String!, $email: String!, $accessToken: String!, $expiresIn: Int!) {
+       updateFacebookUser(id: $id, name: $name, email: $email, accessToken: $accessToken, expiresIn: $expiresIn) {
+         id
          name
        }
      }`,
-    variables: facebookPayload
+    variables: user
   };
 };
 

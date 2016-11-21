@@ -10,7 +10,7 @@ const LoginStatus = (props) => {
     <FacebookLogin
       appId="1288160917871988"
       autoLoad={true}
-      fields="id,name,email"
+      fields="id,name,email,picture"
       scope="public_profile,email,user_friends"
       cssClass="btn btn-link btn-facebook"
       callback={props.actions.handleFacebookResponse} />
