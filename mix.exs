@@ -24,9 +24,9 @@ defmodule FilterBurst.Mixfile do
        :phoenix_html,
        :cowboy,
        :logger,
-       :gettext
-      #  :phoenix_ecto,
-      #  :postgrex
+       :gettext,
+       :phoenix_ecto,
+       :postgrex
       ]]
   end
 

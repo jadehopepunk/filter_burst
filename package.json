@@ -39,7 +39,7 @@
     "bootstrap": "^3.3.7",
     "bootswatch": "^3.3.7",
     "copy-webpack-plugin": "^4.0.1",
-    "css-loader": "^0.25.0",
+    "css-loader": "^0.26.0",
     "eslint": "^3.10.2",
     "eslint-config-airbnb": "^13.0.0",
     "eslint-plugin-import": "^2.2.0",
