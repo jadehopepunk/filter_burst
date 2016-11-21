@@ -4,7 +4,7 @@ defmodule FilterBurst.Schema do
 
   @desc "A user record fetched from facebook"
   object :facebook_user do
-    field :id, :id
+    field :user_id, :string
     field :name, :string
     field :email, :string
     field :access_token, :string
@@ -13,13 +13,13 @@ defmodule FilterBurst.Schema do
 
   # Example data
   @facebook_users %{
-    "123" => %{id: "123", name: "Craig Ambrose"}
+    "123" => %{user_id: "123", name: "Craig Ambrose"}
   }
 
   query do
     field :facebook_user, :facebook_user do
-      arg :id, non_null(:id)
-      resolve fn %{id: facebook_user_id}, _ ->
+      arg :user_id, non_null(:string)
+      resolve fn %{user_id: facebook_user_id}, _ ->
         {:ok, @facebook_users[facebook_user_id]}
       end
     end
@@ -28,7 +28,8 @@ defmodule FilterBurst.Schema do
   mutation do
     @desc "This is just a prototype to see how this shit works"
     field :update_facebook_user, type: :facebook_user do
-      arg :id, non_null(:id)
+      arg :user_id, non_null(:string)
+      arg :name, :string
 
       resolve &FilterBurst.Resolvers.FacebookUser.update/3
     end

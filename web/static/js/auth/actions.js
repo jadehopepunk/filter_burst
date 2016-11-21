@@ -9,13 +9,13 @@ import gql from 'graphql-tag'
 function generateMutationObject(facebookPayload) {
   return {
     mutation: gql`
-     mutation {
-       updateFacebookUser(id: "123") {
-         id
+     mutation updateFacebookUser($id: String!, $name: String!) {
+       updateFacebookUser(userId: $id, name: $name) {
+         userId
          name
        }
-     }
-    `
+     }`,
+    variables: facebookPayload
   };
 };
 
