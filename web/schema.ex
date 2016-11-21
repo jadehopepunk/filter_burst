@@ -11,13 +11,17 @@ defmodule FilterBurst.Schema do
     field :expires_in, :integer
   end
 
+  input_object :facebook_user_input do
+    field :id, non_null(:string)
+    field :name, :string
+    field :email, :string
+    field :access_token, :string
+    field :expires_in, :integer
+  end
+
   mutation do
     field :update_facebook_user, type: :facebook_user do
-      arg :id, non_null(:string)
-      arg :name, :string
-      arg :email, :string
-      arg :access_token, :string
-      arg :expires_in, :integer
+      arg :facebook_user, non_null(:facebook_user_input)
 
       resolve &FilterBurst.Resolvers.FacebookUser.update/3
     end

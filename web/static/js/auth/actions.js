@@ -7,18 +7,18 @@ import _ from 'lodash'
 // export const userFetched = createAction('USER_FETCHED', user => user)
 
 
-function generateMutationObject(facebookPayload) {
+function buildFacebookMutation(facebookPayload) {
   const user = _.pick(facebookPayload, ['id', 'name', 'email', 'accessToken', 'expiresIn'])
 
   return {
     mutation: gql`
-     mutation updateFacebookUser($id: String!, $name: String!, $email: String!, $accessToken: String!, $expiresIn: Int!) {
-       updateFacebookUser(id: $id, name: $name, email: $email, accessToken: $accessToken, expiresIn: $expiresIn) {
+     mutation updateFacebookUser($facebookUser: FacebookUserInput!) {
+       updateFacebookUser(facebook_user: $facebookUser) {
          id
          name
        }
      }`,
-    variables: user
+    variables: {facebookUser: user}
   };
 };
 
@@ -26,7 +26,7 @@ export const handleFacebookResponse = (facebookPayload) => {
   return (dispatch, getState, apolloClient) => {
     console.log('facebook payload', facebookPayload)
     console.log('used to use axios here, am going to use apollo instead', apolloClient)
-    apolloClient.mutate(generateMutationObject(facebookPayload)).then((result) => {
+    apolloClient.mutate(buildFacebookMutation(facebookPayload)).then((result) => {
       if (result.data) {
         // if the mutation yields data, dispatch an action with that data
         console.log('got a result', result)

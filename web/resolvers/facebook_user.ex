@@ -1,8 +1,12 @@
-alias FilterBurst.Repo
-
 defmodule FilterBurst.Resolvers.FacebookUser do
-  def update(_parent, attributes, _info) do
-    IO.inspect attributes
-    {:ok, %{id: attributes.id, name: 'output'}}
+  alias FilterBurst.FacebookUser
+  alias FilterBurst.Repo
+
+  def update(_parent, params, _info) do
+    changeset = FacebookUser.changeset(%FacebookUser{}, params.facebook_user)
+    case Repo.insert(changeset) do
+      {:ok, facebook_user} -> {:ok, facebook_user}
+      {:error, changeset} -> {:error, changeset.errors}
+    end
   end
 end
