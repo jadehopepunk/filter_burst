@@ -2,7 +2,7 @@ defmodule FilterBurst.FacebookUser do
   use FilterBurst.Web, :model
 
   schema "facebook_users" do
-    field :user_id, :string
+    field :facebook_user_id, :string
     field :name, :string
     field :email, :string
     field :access_token, :string
@@ -14,6 +14,6 @@ defmodule FilterBurst.FacebookUser do
 
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:user_id], [:name, :email, :access_token, :expires_in, :picture_url])
+    |> cast(params, [:facebook_user_id], [:name, :email, :access_token, :expires_in, :picture_url])
   end
 end
