@@ -16,8 +16,8 @@ function buildFacebookMutation(facebookPayload) {
 
   return {
     mutation: gql`
-     mutation updateFacebookUser($facebookUser: FacebookUserInput!) {
-       updateFacebookUser(facebook_user: $facebookUser) {
+     mutation upsertFacebookUser($facebookUser: FacebookUserInput!) {
+       upsertFacebookUser(facebook_user: $facebookUser) {
          user {
            id
          }

@@ -13,7 +13,6 @@ defmodule FilterBurst.FacebookUser do
   end
 
   def changeset(struct, params \\ %{}) do
-    struct
-    |> cast(params, [:facebook_user_id, :name, :email, :access_token, :expires_in, :picture_url])
+    cast(struct, params, [:facebook_user_id, :name, :email, :access_token, :expires_in, :picture_url])
   end
 end

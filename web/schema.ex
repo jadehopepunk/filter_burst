@@ -30,10 +30,10 @@ defmodule FilterBurst.Schema do
   end
 
   mutation do
-    field :update_facebook_user, type: :facebook_user do
+    field :upsert_facebook_user, type: :facebook_user do
       arg :facebook_user, non_null(:facebook_user_input)
 
-      resolve &FilterBurst.Resolvers.FacebookUser.update/3
+      resolve &FilterBurst.Resolvers.FacebookUser.upsert/3
     end
   end
 
