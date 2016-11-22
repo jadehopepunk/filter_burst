@@ -37,5 +37,6 @@ config :phoenix, :stacktrace_depth, 20
 config :filter_burst, FilterBurst.Repo,
   adapter: Ecto.Adapters.Postgres,
   database: "filter_burst_dev",
+  username: "craig",
   hostname: "127.0.0.1",
   pool_size: 5
