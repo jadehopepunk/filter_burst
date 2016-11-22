@@ -3,11 +3,12 @@ defmodule FilterBurst.Resolvers.FacebookUser do
   # alias FilterBurst.Repo
 
   def update(_parent, params, _info) do
-    {id, without_id} = Map.pop(params.facebook_user, :id)
-    user_params = Map.put(without_id, :facebook_user_id, id)
+    changeset = FacebookUser.changeset(%FacebookUser{}, params.facebook_user)
 
-    changeset = FacebookUser.changeset(%FacebookUser{}, user_params)
-    case FilterBurst.Repo.insert(changeset, on_conflict: :nothing) do
+    {_, without_id} = Map.pop(params.facebook_user, :facebook_user_id)
+    on_conflict = [set: Enum.into(without_id, [])]
+    
+    case FilterBurst.Repo.insert(changeset, on_conflict: on_conflict, conflict_target: :facebook_user_id) do
       {:ok, facebook_user} -> {:ok, facebook_user}
       {:error, changeset} -> {:error, changeset.errors}
     end

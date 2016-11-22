@@ -2,21 +2,31 @@ defmodule FilterBurst.Schema do
   use Absinthe.Schema
   # use Absinthe.Relay.Schema
 
+  @desc "A filter burst user account"
+  object :user do
+    field :id, :id
+    field :facebook_users, list_of(:facebook_user)
+  end
+
   @desc "A user record fetched from facebook"
   object :facebook_user do
-    field :id, :string
+    field :id, :id
+    field :facebook_user_id, :string
     field :name, :string
     field :email, :string
     field :access_token, :string
     field :expires_in, :integer
+    field :picture_url, :string
+    field :user, :user
   end
 
   input_object :facebook_user_input do
-    field :id, non_null(:string)
+    field :facebook_user_id, non_null(:string)
     field :name, :string
     field :email, :string
     field :access_token, :string
     field :expires_in, :integer
+    field :picture_url, :string
   end
 
   mutation do

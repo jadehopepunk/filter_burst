@@ -8,14 +8,19 @@ import _ from 'lodash'
 
 
 function buildFacebookMutation(facebookPayload) {
-  const user = _.pick(facebookPayload, ['id', 'name', 'email', 'accessToken', 'expiresIn'])
+  const user = _.pick(facebookPayload, ['name', 'email', 'accessToken', 'expiresIn'])
+  user.facebookUserId = facebookPayload.id
+  if (!_.get(facebookPayload, 'picture.data.is_silhouette')) {
+    user.pictureUrl = _.get(facebookPayload, 'picture.data.url')
+  }
 
   return {
     mutation: gql`
      mutation updateFacebookUser($facebookUser: FacebookUserInput!) {
        updateFacebookUser(facebook_user: $facebookUser) {
-         id
-         name
+         user {
+           id
+         }
        }
      }`,
     variables: {facebookUser: user}
