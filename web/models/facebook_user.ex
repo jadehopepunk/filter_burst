@@ -8,6 +8,7 @@ defmodule FilterBurst.FacebookUser do
     field :access_token, :string
     field :expires_in, :integer
     field :picture_url, :string
+    belongs_to :user, FilterBurst.User
 
     timestamps
   end
