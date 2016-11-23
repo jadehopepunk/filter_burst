@@ -3,15 +3,24 @@ import { StyleSheet, css } from 'aphrodite'
 import NavBar from './NavBar'
 import SiteFooter from './SiteFooter'
 
-const Layout = (props) => (
-  <div className={css(styles.pageParts)}>
-    <NavBar />
-    <div className={"container " + css(styles.container)}>
-      {props.children}
+const Layout = (props) => {
+  let children = null;
+  if (props.children) {
+    children = React.cloneElement(props.children, {
+      auth: props.route.auth //sends auth instance from route to children
+    })
+  }
+
+  return (
+    <div className={css(styles.pageParts)}>
+      <NavBar />
+      <div className={"container " + css(styles.container)}>
+        {children}
+      </div>
+      <SiteFooter />
     </div>
-    <SiteFooter />
-  </div>
-);
+  )
+}
 
 const styles = StyleSheet.create({
   pageParts: {
