@@ -22,7 +22,6 @@ const routes = (
 
     <IndexRedirect to="/home" />
     <Route path="home" component={FeedPage} onEnter={requireAuth} />
-
     <Route path="login" component={Login} />
   </Route>
 );

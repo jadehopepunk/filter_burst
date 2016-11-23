@@ -1,12 +1,15 @@
+import { EventEmitter } from 'events'
 import Auth0Lock from 'auth0-lock'
 import { browserHistory } from 'react-router'
 
-export default class AuthService {
+export default class AuthService extends EventEmitter {
   constructor(clientId, domain) {
+    super()
+
     // Configure Auth0
     this.lock = new Auth0Lock(clientId, domain, {
       auth: {
-        redirectUrl: 'http://lvh.me:4000',
+        redirectUrl: `${window.location.origin}/login`,
         responseType: 'token'
       }
     })
@@ -19,8 +22,6 @@ export default class AuthService {
   }
 
   _doAuthentication(authResult) {
-    console.log('done authorization, authResult')
-
     // Saves the user token
     this.setToken(authResult.idToken)
     // navigate to the home route
