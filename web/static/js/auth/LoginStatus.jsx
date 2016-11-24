@@ -3,25 +3,13 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { Link } from 'react-router'
 import * as Actions from './actions'
+import { Button } from 'react-bootstrap'
 
 const LoginStatus = (props) => {
   console.log('props', props)
   return (
-    <Link to="/login">Login</Link>
+    <Button bsStyle="primary" className="navbar-btn" onClick={props.auth.login.bind(this)}>Login</Button>
   )
 }
-
-// const mapStateToProps = state => ({
-//   auth: state.auth
-// })
-//
-// const mapDispatchToProps = dispatch => ({
-//   actions: bindActionCreators(Actions, dispatch)
-// })
-//
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps
-// )(LoginStatus)
 
 export default LoginStatus

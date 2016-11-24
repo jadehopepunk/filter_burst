@@ -4,16 +4,18 @@ import NavBar from './NavBar'
 import SiteFooter from './SiteFooter'
 
 const Layout = (props) => {
+  const auth = props.route.auth
+
   let children = null;
   if (props.children) {
     children = React.cloneElement(props.children, {
-      auth: props.route.auth //sends auth instance from route to children
+      auth: auth //sends auth instance from route to children
     })
   }
 
   return (
     <div className={css(styles.pageParts)}>
-      <NavBar />
+      <NavBar auth={auth} />
       <div className={"container " + css(styles.container)}>
         {children}
       </div>

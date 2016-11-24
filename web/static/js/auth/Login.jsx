@@ -12,23 +12,9 @@ export class Login extends React.Component {
   render() {
     const { auth } = this.props
     return (
-      <div className={css(styles.root)}>
-        <h2>Login</h2>
-        <ButtonToolbar className={css(styles.toolbar)}>
-          <Button bsStyle="primary" onClick={auth.login.bind(this)}>Login</Button>
-        </ButtonToolbar>
-      </div>
+      <div>...logging you in</div>
     )
   }
 }
-
-const styles = StyleSheet.create({
-  root: {
-    textAlign: 'center',
-  },
-  toolbar: {
-    display: 'inline-block',
-  }
-})
 
 export default Login;
