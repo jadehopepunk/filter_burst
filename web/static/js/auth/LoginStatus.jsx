@@ -6,10 +6,11 @@ const { LoginSignup } = AuthComponents;
 const LoginStatus = (props) => {
   const auth = props.auth
   const loggedIn = auth.token
+  const profile = auth.profile
   console.log('auth', auth)
 
   if (loggedIn) {
-    return (<div className="navbar-btn"><span>AWESOME!</span></div>)
+    return <img src={profile.picture} width={40} height={40} className="navbar-btn" />
   } else {
     return <div className="navbar-btn"><LoginSignup login className="navbar-btn" /></div>
   }
