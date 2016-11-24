@@ -10,11 +10,11 @@ import AuthService from '../auth/AuthService'
 
 console.log('process.env', process.env)
 
-const auth = new AuthService(
-  process.env.AUTH0_CLIENT_ID,
-  process.env.AUTH0_URL
-);
-
+// const auth = new AuthService(
+//   process.env.AUTH0_CLIENT_ID,
+//   process.env.AUTH0_URL
+// );
+//
 // validate authentication for private routes
 const requireAuth = (nextState, replace) => {
   if (!auth.loggedIn()) {
@@ -27,7 +27,7 @@ const requireAuth = (nextState, replace) => {
 // <Route path="home" component={FeedPage} onEnter={requireAuth} />
 
 const routes = (
-  <Route path="/" component={Layout} auth={auth}>
+  <Route path="/" component={Layout} auth={null}>
     <IndexRoute component={FeedPage} />
     <Route path="login" component={Login} />
   </Route>

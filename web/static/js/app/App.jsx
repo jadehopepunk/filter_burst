@@ -6,20 +6,22 @@ import appReducer from './reducer'
 import ReduxThunk from 'redux-thunk'
 import ApolloClient from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
+import { AuthReducer, AuthMiddlewares } from 'react-redux-auth0'
 
 const apolloClient = new ApolloClient();
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const reducer = combineReducers({
-  app: appReducer,
+  auth: AuthReducer,
   apollo: apolloClient.reducer(),
 })
 
 let store = createStore(reducer, {}, composeEnhancers(
   applyMiddleware(
     apolloClient.middleware(),
-    ReduxThunk.withExtraArgument(apolloClient)
+    ReduxThunk.withExtraArgument(apolloClient),
+    AuthMiddlewares.TokenMiddleware()
   )
 ))
 
