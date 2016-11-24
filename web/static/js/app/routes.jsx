@@ -16,12 +16,12 @@ const requireAuth = (nextState, replace) => {
 }
 
 // <IndexRoute component={FeedPage} />
+// <IndexRedirect to="/home" />
+// <Route path="home" component={FeedPage} onEnter={requireAuth} />
 
 const routes = (
   <Route path="/" component={Layout} auth={auth}>
-
-    <IndexRedirect to="/home" />
-    <Route path="home" component={FeedPage} onEnter={requireAuth} />
+    <IndexRoute component={FeedPage} />
     <Route path="login" component={Login} />
   </Route>
 );

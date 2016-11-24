@@ -14,7 +14,7 @@ const NavBar = (props) => (
       <ul className="nav navbar-nav navbar-right">
         <li><a href="https://filterburst.useresponse.com/">Participate</a></li>
         <li>
-          {/*<LoginStatus />*/}
+          <LoginStatus />
         </li>
       </ul>
     </Navbar.Collapse>
