@@ -6,7 +6,14 @@ import FeedPage from '../feeds/FeedPage';
 import Login from '../auth/Login'
 import AuthService from '../auth/AuthService'
 
-const auth = new AuthService('bL2AwIzeIva6mCHF2KFRqKRUXYoXnsL3', 'filterburst.auth0.com');
+// 'bL2AwIzeIva6mCHF2KFRqKRUXYoXnsL3'
+
+console.log('process.env', process.env)
+
+const auth = new AuthService(
+  process.env.AUTH0_CLIENT_ID,
+  process.env.AUTH0_URL
+);
 
 // validate authentication for private routes
 const requireAuth = (nextState, replace) => {

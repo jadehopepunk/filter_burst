@@ -3,6 +3,7 @@ var webpack = require('webpack');
 var publicPath = 'http://localhost:3000/';
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 var CopyWebpackPlugin = require("copy-webpack-plugin");
+var Dotenv = require('dotenv-webpack');
 
 module.exports = {
   devtool: 'source-map',
@@ -40,6 +41,7 @@ module.exports = {
     new CopyWebpackPlugin([{ from: "./web/static/assets" }]),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoErrorsPlugin(),
+    new Dotenv({safe: true})
   ],
   resolve: {
     root: path.join(__dirname, ''),
