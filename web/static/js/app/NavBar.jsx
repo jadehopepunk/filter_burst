@@ -1,8 +1,6 @@
 import React from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 import LoginStatus from '../auth/LoginStatus'
-import { AuthComponents, AuthMiddleware, AuthReducer } from 'react-redux-auth0'
-const { LoginSignup } = AuthComponents;
 
 const NavBar = (props) => (
   <Navbar inverse collapseOnSelect>
@@ -16,8 +14,7 @@ const NavBar = (props) => (
       <ul className="nav navbar-nav navbar-right">
         <li><a href="https://filterburst.useresponse.com/">Participate</a></li>
         <li>
-          {/*<LoginStatus auth={props.auth} />*/}
-          <LoginSignup login />
+          <LoginStatus />
         </li>
       </ul>
     </Navbar.Collapse>

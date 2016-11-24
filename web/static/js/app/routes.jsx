@@ -6,28 +6,8 @@ import FeedPage from '../feeds/FeedPage';
 import Login from '../auth/Login'
 import AuthService from '../auth/AuthService'
 
-// 'bL2AwIzeIva6mCHF2KFRqKRUXYoXnsL3'
-
-console.log('process.env', process.env)
-
-// const auth = new AuthService(
-//   process.env.AUTH0_CLIENT_ID,
-//   process.env.AUTH0_URL
-// );
-//
-// validate authentication for private routes
-const requireAuth = (nextState, replace) => {
-  if (!auth.loggedIn()) {
-    replace({ pathname: '/login' })
-  }
-}
-
-// <IndexRoute component={FeedPage} />
-// <IndexRedirect to="/home" />
-// <Route path="home" component={FeedPage} onEnter={requireAuth} />
-
 const routes = (
-  <Route path="/" component={Layout} auth={null}>
+  <Route path="/" component={Layout}>
     <IndexRoute component={FeedPage} />
     <Route path="login" component={Login} />
   </Route>

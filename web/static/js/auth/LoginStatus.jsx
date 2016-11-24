@@ -1,18 +1,21 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
-import { Link } from 'react-router'
-import * as Actions from './actions'
-import { Button } from 'react-bootstrap'
+import { AuthComponents } from 'react-redux-auth0'
+const { LoginSignup } = AuthComponents;
 
 const LoginStatus = (props) => {
   const auth = props.auth
+  const loggedIn = auth.token
+  console.log('auth', auth)
 
-  if (auth.loggedIn) {
-    return (<span>AWESOME!</span>)
+  if (loggedIn) {
+    return (<div className="navbar-btn"><span>AWESOME!</span></div>)
   } else {
-    return <Button bsStyle="primary" className="navbar-btn" onClick={auth.login.bind(this)}>Login</Button>
+    return <div className="navbar-btn"><LoginSignup login className="navbar-btn" /></div>
   }
 }
 
-export default LoginStatus
+export default connect((state)=>{
+  const { auth } = state;
+  return { auth };
+})(LoginStatus);
