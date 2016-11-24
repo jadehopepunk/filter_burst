@@ -12,7 +12,7 @@ const LoginStatus = (props) => {
   if (loggedIn) {
     return <img src={profile.picture} width={40} height={40} className="navbar-btn" />
   } else {
-    return <div className="navbar-btn"><LoginSignup login className="navbar-btn" /></div>
+    return <div className="navbar-btn"><LoginSignup login className="navbar-btn"><span>Sign in</span></LoginSignup></div>
   }
 }
 

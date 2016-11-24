@@ -23,7 +23,7 @@
       ga('create', 'UA-87366009-1', 'auto');
       ga('send', 'pageview');
     </script>
-    <script src="http://cdn.auth0.com/js/lock-9.0.min.js"></script>
+    <script src="https://cdn.auth0.com/js/lock/10.6/lock.min.js"></script>
   </head>
 
   <body>
