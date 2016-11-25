@@ -35,7 +35,7 @@ module.exports = {
     new ExtractTextPlugin("css/app.css"),
     new CopyWebpackPlugin([{ from: "./web/static/assets" }]),
     new webpack.NoErrorsPlugin(),
-    new Dotenv({safe: true})
+    new Dotenv({safe: true, path: './.env.' + (process.env.NODE_ENV || 'development')})
   ],
   resolve: {
     root: path.join(__dirname, ''),
