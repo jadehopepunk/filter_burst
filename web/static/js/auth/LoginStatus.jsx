@@ -7,7 +7,6 @@ const LoginStatus = (props) => {
   const auth = props.auth
   const loggedIn = auth.token
   const profile = auth.profile
-  console.log('auth', auth)
 
   if (loggedIn) {
     return <img src={profile.picture} width={40} height={40} className="navbar-btn" />
