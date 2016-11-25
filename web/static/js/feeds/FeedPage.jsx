@@ -1,6 +1,5 @@
 import React from 'react';
 import StoryList from './StoryList'
-import FeedSettings from './FeedSettings'
 
 const FeedPage = () => (
   <div>
@@ -17,14 +16,7 @@ const FeedPage = () => (
         list them on our <a href="https://filterburst.useresponse.com/">idea voting page</a>.
       </p>
     </div>
-    <div className="row">
-      <div className="col-md-8">
-        <StoryList />
-      </div>
-      <div className="col-md-4">
-        <FeedSettings />
-      </div>
-    </div>
+    <StoryList />
   </div>
 );
 

@@ -1,12 +1,13 @@
 import React from 'react'
 import { Navbar, Nav, NavItem, NavDropdown, MenuItem } from 'react-bootstrap'
 import LoginStatus from '../auth/LoginStatus'
+import { StyleSheet, css } from 'aphrodite'
 
 const NavBar = (props) => (
-  <Navbar inverse collapseOnSelect>
+  <Navbar inverse fluid collapseOnSelect className={css(styles.navbar)}>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#">Filter Burst</a> - an experiment in diverse yet civil conversation
+        <a href="#">Filter Burst</a>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
@@ -20,5 +21,12 @@ const NavBar = (props) => (
     </Navbar.Collapse>
   </Navbar>
 );
+
+const styles = StyleSheet.create({
+  navbar: {
+    marginBottom: 0,
+    borderRadius: 0,
+  }
+})
 
 export default NavBar;

@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     backgroundColor: 'white',
     padding: 10,
+    color: 'black',
   },
   active: {
 

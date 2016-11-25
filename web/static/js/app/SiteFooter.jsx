@@ -12,12 +12,10 @@ const SiteFooter = (props) => (
 
 const styles = StyleSheet.create({
   footer: {
-    backgroundColor: '#404040',
-    display: 'flex',
-    flex: 1,
+    backgroundColor: '#DDDDDD ',
     paddingTop: 20,
-    paddingBottom: 20,
-    color: '#CCCCCC',
+    paddingBottom: 40,
+    // color: '#CCCCCC',
     fontFamily: '"Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif',
   }
 })

@@ -13,14 +13,15 @@ ReactDOM.render(
   rootEl
 );
 
-// if (module.hot) {
-//   module.hot.accept('./app/Root', () => {
-//     const NextRoot = require('./app/Root').default;
-//     ReactDOM.render(
-//       <AppContainer>
-//         <NextRoot />
-//       </AppContainer>,
-//       rootEl
-//     );
-//   });
-// }
+if (module.hot) {
+  module.hot.decline("./app/routes.jsx");
+  module.hot.accept('./app/App', () => {
+    const NextApp = require('./app/App').default;
+    ReactDOM.render(
+      <AppContainer>
+        <NextApp />
+      </AppContainer>,
+      rootEl
+    );
+  });
+}
