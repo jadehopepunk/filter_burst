@@ -6,6 +6,7 @@ import ReduxThunk from 'redux-thunk'
 import ApolloClient from 'apollo-client'
 import { ApolloProvider } from 'react-apollo'
 import { AuthReducer, AuthMiddlewares } from 'react-redux-auth0'
+import { persistStore, autoRehydrate } from 'redux-persist'
 
 const apolloClient = new ApolloClient();
 
@@ -21,8 +22,10 @@ let store = createStore(reducer, {}, composeEnhancers(
     apolloClient.middleware(),
     ReduxThunk.withExtraArgument(apolloClient),
     AuthMiddlewares.TokenMiddleware()
-  )
+  ),
+  autoRehydrate()
 ))
+persistStore(store, {whitelist: ['auth']})
 
 const App = () => (
   <ApolloProvider store={store} client={apolloClient}>
