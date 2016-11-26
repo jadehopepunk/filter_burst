@@ -1,7 +1,8 @@
 import React from 'react';
-import StoryList from './StoryList'
 import { StyleSheet, css } from 'aphrodite'
 import { Link } from 'react-router'
+import StoryList from './StoryList'
+import NewPostForm from './NewPostForm'
 
 const FeedPage = (props) => (
   <div>
@@ -18,6 +19,7 @@ const FeedPage = (props) => (
         so we're experimenting.
       </p>
     </div>
+    <NewPostForm />
     <StoryList />
     {props.children}
   </div>
