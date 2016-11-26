@@ -1,23 +1,37 @@
 import React from 'react';
 import StoryList from './StoryList'
+import { StyleSheet, css } from 'aphrodite'
+import { Link } from 'react-router'
 
-const FeedPage = () => (
+const FeedPage = (props) => (
   <div>
-    <div className="alert alert-info">
-      <h4>How do we fix social media?</h4>
+    <div className={css(styles.valueProp)}>
+      <h4 className={css(styles.valuePropHeading)}>
+        Lets fix social media
+      </h4>
       <p>
-        It feels like the US has been torn in half. How do we social media conversations
-        with people different to us, when it&#39;s already hard enough to talk online
-        without abuse? Is facebook going to make that happen for us?
-      </p>
-      <p>
-        This is an experiment to try doing it ourselves. If you have any ideas on how
-        to make online conversation more <b>diverse</b> or more <b>safe</b> then
-        list them on our <a href="https://filterburst.useresponse.com/">idea voting page</a>.
+        We want to build a new type of social
+        media <Link to="/who-owns-this">that we all own together</Link>.
+        This should balance comfortable sharing with our
+        friends with the need to be exposed to ideas from people
+        different to us. We don't claim to know how to do this,
+        so we're experimenting.
       </p>
     </div>
     <StoryList />
+    {props.children}
   </div>
 );
+
+const styles = StyleSheet.create({
+  valueProp: {
+    fontFamily: '"Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif',
+    marginBottom: 40,
+    textAlign: 'center',
+  },
+  valuePropHeading: {
+    marginTop: 0
+  }
+})
 
 export default FeedPage;

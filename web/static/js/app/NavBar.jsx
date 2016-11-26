@@ -7,7 +7,7 @@ const NavBar = (props) => (
   <Navbar inverse fluid collapseOnSelect className={css(styles.navbar)}>
     <Navbar.Header>
       <Navbar.Brand>
-        <a href="#">Filter Burst</a>
+        <a href="#">the <span className={css(styles.brandStrong)}>Filter Burst</span> project</a>
       </Navbar.Brand>
       <Navbar.Toggle />
     </Navbar.Header>
@@ -26,6 +26,9 @@ const styles = StyleSheet.create({
   navbar: {
     marginBottom: 0,
     borderRadius: 0,
+  },
+  brandStrong: {
+    fontWeight: 'bold',
   }
 })
 
