@@ -21,13 +21,21 @@ class NewPostForm extends React.Component {
     mutate: PropTypes.func.isRequired
   }
 
+  state = {
+    text: "",
+  }
+
   post = () => {
-    this.props.mutate({ variables: { userId: 'abcdef', text: 'eat my shorts' } })
+    this.props.mutate({ variables: { userId: 'abcdef', text: this.state.text } })
     .then(({ data }) => {
       console.log('got data', data);
     }).catch((error) => {
       console.log('there was an error sending the query', error);
     });
+  }
+
+  handleTextChange = (event) => {
+    this.setState({text: event.target.value})
   }
 
   render() {
@@ -36,7 +44,9 @@ class NewPostForm extends React.Component {
         <div className={css(styles.container)}>
           <Textarea
             className={css(styles.textarea)}
-            placeholder="what would you like to share?" />
+            placeholder="what would you like to share?"
+            value={this.state.text}
+            onChange={this.handleTextChange} />
           <div className={css(styles.controls)}>
             <ButtonToolbar>
               <div className="pull-right">
