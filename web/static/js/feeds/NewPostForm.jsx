@@ -1,10 +1,35 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { StyleSheet, css } from 'aphrodite'
 import Textarea from 'react-textarea-autosize'
 import { ButtonToolbar, Button } from 'react-bootstrap'
 import FocusOverlay from '../generic/FocusOverlay'
+import gql from 'graphql-tag'
+import { graphql } from 'react-apollo'
+
+const createPost = gql`
+  mutation createPost($userId: String!, $text: String!) {
+    createPost(userId: $userId, text: $text) {
+      id
+      userId
+      text
+    }
+  }
+`;
 
 class NewPostForm extends React.Component {
+  static propTypes = {
+    mutate: PropTypes.func.isRequired
+  }
+
+  post = () => {
+    this.props.mutate({ variables: { userId: 'abcdef', text: 'eat my shorts' } })
+    .then(({ data }) => {
+      console.log('got data', data);
+    }).catch((error) => {
+      console.log('there was an error sending the query', error);
+    });
+  }
+
   render() {
     return (
       <FocusOverlay>
@@ -15,7 +40,7 @@ class NewPostForm extends React.Component {
           <div className={css(styles.controls)}>
             <ButtonToolbar>
               <div className="pull-right">
-                <Button>Post</Button>
+                <Button onClick={this.post}>Post</Button>
               </div>
             </ButtonToolbar>
           </div>
@@ -62,4 +87,5 @@ const styles = StyleSheet.create({
   }
 })
 
-export default NewPostForm;
+const NewPostFormWithMutate = graphql(createPost)(NewPostForm);
+export default NewPostFormWithMutate;
