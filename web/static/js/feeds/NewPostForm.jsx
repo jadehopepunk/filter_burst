@@ -2,42 +2,16 @@ import React from 'react';
 import { StyleSheet, css } from 'aphrodite'
 import Textarea from 'react-textarea-autosize'
 import { ButtonToolbar, Button } from 'react-bootstrap'
+import FocusOverlay from '../generic/FocusOverlay'
 
 class NewPostForm extends React.Component {
-  constructor() {
-    super()
-    this.state = {focus: false}
-  }
-
-  focus = () => {
-    this.setState({focus: true})
-  }
-
-  blur = () => {
-    this.setState({focus: false})
-  }
-
-  renderOverlay() {
-    if (this.state.focus) {
-      return <div className={css(styles.overlay)}></div>
-    } else {
-      return null
-    }
-  }
-
   render() {
-    var containerStyles = [styles.container]
-    if (this.state.focus) containerStyles.push(styles.focussedContainer)
-
     return (
-      <div>
-        {this.renderOverlay()}
-        <div className={css(...containerStyles)}>
+      <FocusOverlay>
+        <div className={css(styles.container)}>
           <Textarea
             className={css(styles.textarea)}
-            placeholder="what would you like to share?"
-            onFocus={this.focus}
-            onBlur={this.blur} />
+            placeholder="what would you like to share?" />
           <div className={css(styles.controls)}>
             <ButtonToolbar>
               <div className="pull-right">
@@ -46,7 +20,7 @@ class NewPostForm extends React.Component {
             </ButtonToolbar>
           </div>
         </div>
-      </div>
+      </FocusOverlay>
     )
   }
 }
@@ -61,9 +35,6 @@ const styles = StyleSheet.create({
     zIndex: 101,
     backgroundColor: 'white',
     padding: 10,
-  },
-  focussedContainer: {
-    borderColor: 'white',
     borderRadius: 2,
   },
   textarea: {
