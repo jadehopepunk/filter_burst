@@ -8,7 +8,7 @@ defmodule FilterBurst.Post do
     timestamps
   end
 
-  # def changeset(struct, params \\ %{}) do
-  #   cast(struct, params, [:facebook_user_id, :name, :email, :access_token, :expires_in, :picture_url])
-  # end
+  def changeset_for_create(struct, params \\ %{}) do
+    cast(struct, params, [:user_id, :text])
+  end
 end
