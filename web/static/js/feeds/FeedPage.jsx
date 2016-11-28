@@ -3,6 +3,7 @@ import { StyleSheet, css } from 'aphrodite'
 import { Link } from 'react-router'
 import StoryList from './StoryList'
 import NewPostForm from './NewPostForm'
+import IfAuthenticated from '../auth/IfAuthenticated'
 
 const FeedPage = (props) => (
   <div>
@@ -19,7 +20,9 @@ const FeedPage = (props) => (
         so we're experimenting.
       </p>
     </div>
-    <NewPostForm />
+    <IfAuthenticated>
+      <NewPostForm />
+    </IfAuthenticated>
     <StoryList />
     {props.children}
   </div>
