@@ -18,8 +18,8 @@ defmodule FilterBurst.Schema do
   end
 
   query do
-    # field :get_node, :node do
-    #   arg :id, non_null(:string)
-    # end
+    field :feed, list_of(:post) do
+      resolve &FilterBurst.Resolvers.Post.feed/3
+    end
   end
 end
