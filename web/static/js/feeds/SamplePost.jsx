@@ -10,7 +10,7 @@ const typeIcons = {
   news: 'newspaper-o',
 }
 
-const StoryList = (props) => (
+const SamplePost = (props) => (
   <div className={css(styles.container)}>
     <div className={css(styles.indicatorBase, styles[`${props.type}Indicator`])}>
       <FontAwesome name={typeIcons[props.type]} size='2x' />
@@ -55,4 +55,4 @@ const styles = StyleSheet.create({
 })
 
 
-export default StoryList;
+export default SamplePost;

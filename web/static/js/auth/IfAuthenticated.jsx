@@ -7,7 +7,7 @@ class IfAuthenticated extends React.Component {
   }
 
   render() {
-    return (this.props.authenticated == this.props.is) ? this.props.children : null
+    return (this.props.authenticated == this.props.is) ? <div>{this.props.children}</div> : null
   }
 }
 
