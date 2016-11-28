@@ -1,11 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-const IfAuthenticated = (props) => {
-  if (props.authenticated) {
-    return props.children
-  } else {
-    return null
+class IfAuthenticated extends React.Component {
+  static defaultProps = {
+    is: true
+  }
+
+  render() {
+    return (this.props.authenticated == this.props.is) ? this.props.children : null
   }
 }
 

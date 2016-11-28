@@ -27,10 +27,13 @@ class NewPostForm extends React.Component {
     text: "",
   }
 
-  post = () => {
+  post = (event) => {
+    event.target.blur()
     this.props.mutate({ variables: { userId: this.props.userId, text: this.state.text } })
     .then(({ data }) => {
-      console.log('got data', data);
+      console.log('got data', data)
+      this.setState({text: ""})
+      this.refs.focusOverlay.blur()
     }).catch((error) => {
       console.log('there was an error sending the query', error);
     });
@@ -42,7 +45,7 @@ class NewPostForm extends React.Component {
 
   render() {
     return (
-      <FocusOverlay>
+      <FocusOverlay ref="focusOverlay">
         <div className={css(styles.container)}>
           <Textarea
             className={css(styles.textarea)}
