@@ -5,6 +5,7 @@ import { ButtonToolbar, Button } from 'react-bootstrap'
 import FocusOverlay from '../generic/FocusOverlay'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
+import { connect } from 'react-redux'
 
 const createPost = gql`
   mutation createPost($userId: String!, $text: String!) {
@@ -18,7 +19,8 @@ const createPost = gql`
 
 class NewPostForm extends React.Component {
   static propTypes = {
-    mutate: PropTypes.func.isRequired
+    mutate: PropTypes.func.isRequired,
+    userId: PropTypes.string.isRequired
   }
 
   state = {
@@ -26,7 +28,7 @@ class NewPostForm extends React.Component {
   }
 
   post = () => {
-    this.props.mutate({ variables: { userId: 'abcdef', text: this.state.text } })
+    this.props.mutate({ variables: { userId: this.props.userId, text: this.state.text } })
     .then(({ data }) => {
       console.log('got data', data);
     }).catch((error) => {
@@ -97,5 +99,9 @@ const styles = StyleSheet.create({
   }
 })
 
-const NewPostFormWithMutate = graphql(createPost)(NewPostForm);
+function mapStateToProps(state) {
+  return { userId: state.auth.id }
+}
+
+const NewPostFormWithMutate = graphql(createPost)(connect(mapStateToProps)(NewPostForm));
 export default NewPostFormWithMutate;
