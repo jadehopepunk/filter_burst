@@ -1,10 +1,11 @@
 import React from 'react'
 import { NavDropdown, MenuItem } from 'react-bootstrap'
 import LogoutMenuItem from './LogoutMenuItem'
+import AvatarImage from './AvatarImage'
 
 const UserNavDropdown = (props) => {
   const profile = props.profile
-  const avatar = <img src={profile.picture} width={40} height={40} />
+  const avatar = <AvatarImage picture={profile.picture} />
 
   return (
     <NavDropdown className="picture-dropdown" eventKey="4" title={avatar} id="nav-dropdown">

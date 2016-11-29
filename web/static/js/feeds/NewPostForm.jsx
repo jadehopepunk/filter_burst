@@ -6,6 +6,7 @@ import FocusOverlay from '../generic/FocusOverlay'
 import gql from 'graphql-tag'
 import { graphql } from 'react-apollo'
 import { connect } from 'react-redux'
+import AvatarImage from '../auth/AvatarImage'
 
 const createPost = gql`
   mutation createPost($userId: String!, $text: String!) {
@@ -22,6 +23,9 @@ class NewPostForm extends React.Component {
     mutate: PropTypes.func.isRequired,
     userId: PropTypes.string.isRequired,
     onSubmitted: PropTypes.func,
+    profile: PropTypes.shape({
+      picture: PropTypes.string
+    }).isRequired
   }
 
   state = {
@@ -49,11 +53,19 @@ class NewPostForm extends React.Component {
     return (
       <FocusOverlay ref="focusOverlay">
         <div className={css(styles.container)}>
-          <Textarea
-            className={css(styles.textarea)}
-            placeholder="what would you like to share?"
-            value={this.state.text}
-            onChange={this.handleTextChange} />
+          <div className={css(styles.talkBox)}>
+            <div className={css(styles.avatarContainer)}>
+              <AvatarImage picture={this.props.profile.picture} />
+            </div>
+            <div className={css(styles.textAreaContainer)}>
+              <Textarea
+                className={css(styles.textarea)}
+                placeholder="what would you like to share?"
+                value={this.state.text}
+                minRows={2}
+                onChange={this.handleTextChange} />
+            </div>
+          </div>
           <div className={css(styles.controls)}>
             <ButtonToolbar>
               <div className="pull-right">
@@ -67,6 +79,8 @@ class NewPostForm extends React.Component {
   }
 }
 
+const paddingSize = 15
+
 const styles = StyleSheet.create({
   container: {
     fontFamily: '"Raleway", "Helvetica Neue", Helvetica, Arial, sans-serif',
@@ -76,18 +90,23 @@ const styles = StyleSheet.create({
     position: 'relative',
     zIndex: 101,
     backgroundColor: 'white',
-    padding: 10,
+    padding: paddingSize,
     borderRadius: 2,
   },
+  textAreaContainer: {
+    flex: 1,
+    borderBottom: '1px solid #dddddd',
+  },
   textarea: {
-    width: '100%',
     margin: 0,
+    padding: 0,
     border: 'none',
-    paddingTop: 10,
-    paddingBottom: 10,
     backgroundColor: 'transparent',
     resize: 'none',
     outline: 'none',
+    width: '100%',
+    flex: 1,
+    marginBottom: paddingSize,
   },
   overlay: {
     backgroundColor: 'rgba(0,0,0,0.4)',
@@ -98,14 +117,25 @@ const styles = StyleSheet.create({
     right: 0,
     zIndex: 100,
   },
+  talkBox: {
+    display: 'flex',
+    flexDirection: 'row',
+  },
+  avatarContainer: {
+    marginRight: paddingSize,
+  },
   controls: {
-    borderTop: '1px solid #dddddd',
-    paddingTop: 10,
+    paddingTop: paddingSize,
   }
 })
 
 function mapStateToProps(state) {
-  return { userId: state.auth.id }
+  return {
+    userId: state.auth.id,
+    profile: {
+      picture: state.auth.profile.picture
+    }
+  }
 }
 
 const NewPostFormWithMutate = graphql(createPost)(connect(mapStateToProps)(NewPostForm));
