@@ -18,7 +18,6 @@ defmodule FilterBurst.Schema do
     field :user_id, :string
     field :text, :string
     field :user, :user do
-      # resolve &user_for_post/3
       resolve fn post, _, _ ->
         batch({FilterBurst.Resolvers.User, :batched_by_id}, post.user_id, fn batch_results ->
           {:ok, Map.get(batch_results, post.user_id)}

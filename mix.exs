@@ -49,6 +49,7 @@ defmodule FilterBurst.Mixfile do
       {:cowboy, "~> 1.0"},
       {:poison, "~> 2.2.0"},
       {:absinthe_plug, "~> 1.2"},
+      {:tesla, "~> 0.5.2"},
    ]
   end
 

@@ -11,6 +11,9 @@ const feedQuery = gql`
       id
       text
       userId
+      user {
+        picture
+      }
     }
   }
 `;
@@ -22,7 +25,7 @@ class PostList extends React.Component {
 
   renderPosts(posts) {
     return _.map(posts, (post) => {
-      return <Post key={post.id} type="idea" text={post.text} />
+      return <Post key={post.id} type="idea" text={post.text} user={post.user} />
     })
   }
 
