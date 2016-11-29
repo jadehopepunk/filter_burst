@@ -16,6 +16,10 @@ const feedQuery = gql`
 `;
 
 class PostList extends React.Component {
+  refetch() {
+    alert('refetch')
+  }
+
   renderPosts(posts) {
     return _.map(posts, (post) => {
       return <Post key={post.id} type="idea" text={post.text} />

@@ -1,11 +1,9 @@
 import React from 'react';
-import { StyleSheet, css } from 'aphrodite'
 import { Link } from 'react-router'
 import SamplePostList from './SamplePostList'
-import NewPostForm from './NewPostForm'
 import IfAuthenticated from '../auth/IfAuthenticated'
 import SampleFeedPage from './SampleFeedPage'
-import PostList from './PostList'
+import MyFeedPage from './MyFeedPage'
 
 const FeedPage = (props) => (
   <div>
@@ -13,14 +11,10 @@ const FeedPage = (props) => (
       <SampleFeedPage />
     </IfAuthenticated>
     <IfAuthenticated>
-      <NewPostForm />
-      <PostList />
+      <MyFeedPage />
     </IfAuthenticated>
     {props.children}
   </div>
 );
-
-const styles = StyleSheet.create({
-})
 
 export default FeedPage;

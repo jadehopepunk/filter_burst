@@ -20,7 +20,8 @@ const createPost = gql`
 class NewPostForm extends React.Component {
   static propTypes = {
     mutate: PropTypes.func.isRequired,
-    userId: PropTypes.string.isRequired
+    userId: PropTypes.string.isRequired,
+    onSubmitted: PropTypes.func,
   }
 
   state = {
@@ -34,6 +35,7 @@ class NewPostForm extends React.Component {
       console.log('got data', data)
       this.setState({text: ""})
       this.refs.focusOverlay.blur()
+      if (this.props.onSubmitted) this.props.onSubmitted()
     }).catch((error) => {
       console.log('there was an error sending the query', error);
     });
