@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
 
 function mapStateToProps(state) {
   return {
-    userId: state.auth.id,
+    userId: state.auth.profile.user_id,
     profile: {
       picture: state.auth.profile.picture
     }
