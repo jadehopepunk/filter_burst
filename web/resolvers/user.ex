@@ -7,30 +7,29 @@ defmodule Auth0 do
   plug Tesla.Middleware.Headers, %{"Authorization" => "Bearer #{Application.get_env(:filter_burst, :auth0)[:manage_api_read_token]}"}
   plug Tesla.Middleware.JSON
 
+  @user_fields "user_id,name,picture"
+
   def user_by_id(user_id) do
-    get("/users/#{user_id}")
+    query_params = %{"fields" => @user_fields}
+    get("/users/#{user_id}", query: query_params)
   end
 
-  def users_by_ids(user_ids) do
-    # TODO: if there is only 1 id, probably call the other method
+  def users_by_ids(user_ids) when length(user_ids) == 1 do
+    user_id = List.first user_ids
+    [user_by_id(user_id).body]
+  end
 
+  def users_by_ids(user_ids) when length(user_ids) > 1 do
     joined_ids = Enum.join(user_ids, " OR ")
-    user_query = "user_id:(#{joined_ids})"
-    query_params = %{"fields" => "user_id,name,picture", "q" => user_query}
-    query_string = URI.encode_query(query_params)
+    query_params = %{"fields" => @user_fields, "q" => "user_id:(#{joined_ids})"}
 
-    Logger.debug("query_string: #{query_string}")
-    get("/users?#{query_string}")
+    get("/users", query: query_params).body
   end
 end
 
 defmodule FilterBurst.Resolvers.User do
   require Logger
-
-  # TODO: move into a handy module
-  def map_keys_to_atoms(map) do
-    for {key, val} <- map, into: %{}, do: {String.to_atom(key), val}
-  end
+  alias Utils.MapUtils
 
   def batched_by_id(_, ids) do
     Logger.debug("ids: #{inspect(ids)}")
@@ -38,19 +37,10 @@ defmodule FilterBurst.Resolvers.User do
     unique_ids = Enum.uniq(ids)
     Logger.debug("unique_ids: #{inspect(unique_ids)}")
 
-    tesla_result = Auth0.users_by_ids(ids)
-    users = tesla_result.body
+    users = Auth0.users_by_ids(unique_ids)
     Logger.debug("users: #{inspect(users)}")
 
     # TODO: also need to convert user_id to id (perhaps, or change schema)
-    Map.new(users, &{Map.get(&1, "user_id"), map_keys_to_atoms(&1)})
-
-    # import Ecto.Query
-    # model
-    # |> where([m], m.id in ^ids)
-    # |> Repo.all
-    # |> Map.new(&{&1.id, &1})
-    # fred = %{id: "facebook|10153926249487611", name: "Fred Flintstone", picture: "abc"}
-    # %{"facebook|10153926249487611" => fred}
+    Map.new(users, &{Map.get(&1, "user_id"), MapUtils.map_keys_to_atoms(&1)})
   end
 end
