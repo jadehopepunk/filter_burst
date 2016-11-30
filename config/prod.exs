@@ -66,3 +66,7 @@ config :filter_burst, FilterBurst.Repo,
   url: System.get_env("DATABASE_URL"),
   pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
   ssl: true
+
+config :filter_burst, :auth0,
+  domain: System.get_env("AUTH0_DOMAIN")
+  manage_api_read_token: System.get_env("AUTH0_MANAGE_API_READ_TOKEN")
