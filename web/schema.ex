@@ -3,10 +3,6 @@ defmodule FilterBurst.Schema do
   # use Absinthe.Relay.Schema
   require Logger
 
-  def user_for_post(post, _params, _info) do
-    {:ok, %{id: "123", name: "Fred Flintstone", picture: "abc"}}
-  end
-
   object :user do
     field :id, :string
     field :name, :string

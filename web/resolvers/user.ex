@@ -3,12 +3,9 @@ defmodule Auth0 do
   use Tesla
   require Logger
 
-  # TODO: Put per environment configuration in a safe place
-  plug Tesla.Middleware.BaseUrl, "https://filterburst-dev.auth0.com/api/v2"
-  plug Tesla.Middleware.Headers, %{"Authorization" => "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJQWmF5M0g4OG1EM2pyUDV3Y1BTQkxoN0tBWHl6c3hhOCIsInNjb3BlcyI6eyJ1c2VycyI6eyJhY3Rpb25zIjpbInJlYWQiXX19LCJpYXQiOjE0ODA0MTI5NzUsImp0aSI6ImM4MDg3ODc5MmFjOTBkNzhjOThjNjYzMWM5NGZlZjcyIn0.yc3-5b_qvse_AA6iomcfS4ALQQtXwSOcignTYQM16xI"}
+  plug Tesla.Middleware.BaseUrl, "https://#{Application.get_env(:filter_burst, :auth0)[:domain]}/api/v2"
+  plug Tesla.Middleware.Headers, %{"Authorization" => "Bearer #{Application.get_env(:filter_burst, :auth0)[:manage_api_read_token]}"}
   plug Tesla.Middleware.JSON
-
-  # adapter Tesla.Adapter.Hackney
 
   def user_by_id(user_id) do
     get("/users/#{user_id}")

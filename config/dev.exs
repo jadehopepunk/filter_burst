@@ -40,3 +40,7 @@ config :filter_burst, FilterBurst.Repo,
   username: "craig",
   hostname: "127.0.0.1",
   pool_size: 5
+
+config :filter_burst, :auth0,
+  domain: "filterburst-dev.auth0.com",
+  manage_api_read_token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJQWmF5M0g4OG1EM2pyUDV3Y1BTQkxoN0tBWHl6c3hhOCIsInNjb3BlcyI6eyJ1c2VycyI6eyJhY3Rpb25zIjpbInJlYWQiXX19LCJpYXQiOjE0ODA0MTI5NzUsImp0aSI6ImM4MDg3ODc5MmFjOTBkNzhjOThjNjYzMWM5NGZlZjcyIn0.yc3-5b_qvse_AA6iomcfS4ALQQtXwSOcignTYQM16xI"
