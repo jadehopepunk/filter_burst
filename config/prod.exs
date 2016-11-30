@@ -68,5 +68,5 @@ config :filter_burst, FilterBurst.Repo,
   ssl: true
 
 config :filter_burst, :auth0,
-  domain: System.get_env("AUTH0_DOMAIN")
+  domain: System.get_env("AUTH0_DOMAIN"),
   manage_api_read_token: System.get_env("AUTH0_MANAGE_API_READ_TOKEN")
