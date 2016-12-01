@@ -32,8 +32,18 @@ class NewPostForm extends React.Component {
     text: "",
   }
 
-  post = (event) => {
+  onClickPost = (event) => {
     event.target.blur()
+    if (this.validForSubmit()) {
+      this.submitPost()
+    }
+  }
+
+  validForSubmit() {
+    return !!this.state.text
+  }
+
+  submitPost() {
     this.props.mutate({ variables: { userId: this.props.userId, text: this.state.text } })
     .then(({ data }) => {
       console.log('got data', data)
@@ -69,7 +79,7 @@ class NewPostForm extends React.Component {
           <div className={css(styles.controls)}>
             <ButtonToolbar>
               <div className="pull-right">
-                <Button onClick={this.post}>Post</Button>
+                <Button onClick={this.onClickPost}>Post</Button>
               </div>
             </ButtonToolbar>
           </div>
