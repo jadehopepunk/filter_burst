@@ -2,7 +2,7 @@ defmodule FilterBurst.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", FilterBurst.RoomChannel
+  channel "feed", FilterBurst.FeedChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket, timeout: 45_000
