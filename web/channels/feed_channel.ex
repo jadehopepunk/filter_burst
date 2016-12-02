@@ -9,5 +9,11 @@ defmodule FilterBurst.FeedChannel do
   def broadcast_post(post) do
     Logger.info "broadcast post: #{inspect(post)}"
 
+    payload = %{
+      "text" => post.text
+    }
+    Logger.info "payload: #{inspect(payload)}"
+
+    FilterBurst.Endpoint.broadcast("feed", "new_post", payload)
   end
 end
