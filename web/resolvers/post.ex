@@ -7,7 +7,9 @@ defmodule FilterBurst.Resolvers.Post do
   def create(_parent, params, _info) do
     changeset = Post.changeset_for_create(%Post{}, params)
     case Repo.insert(changeset) do
-      {:ok, facebook_user} -> {:ok, facebook_user}
+      {:ok, post} ->
+        FilterBurst.FeedChannel.broadcast_post(post)
+        {:ok, post}
       {:error, changeset} -> {:error, changeset.errors}
     end
   end
