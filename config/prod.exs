@@ -13,6 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :filter_burst, FilterBurst.Endpoint,
   http: [port: {:system, "PORT"}],
+  check_origin: ["http://www.filterburst.com", "http://filterburst.com", "//filterburst.com:888", "//www.filterburst.com:888"],
   url: [scheme: "http", host: "www.filterburst.com", port: 80],
   cache_static_manifest: "priv/static/manifest.json",
   secret_key_base: System.get_env("SECRET_KEY_BASE")
