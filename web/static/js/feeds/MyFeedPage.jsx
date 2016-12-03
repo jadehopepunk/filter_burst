@@ -5,12 +5,6 @@ import PostList from './PostList'
 import { Socket } from "phoenix"
 
 class MyFeedPage extends React.Component {
-  onPostSubmitted = () => {
-    this.postList.renderedElement.props.data.refetch()
-    // console.log('this.postList', this.postList)
-    // this.postList.children[0].refetch()
-  }
-
   componentDidMount() {
     this.socket = new Socket("/socket", {
       params: {token: window.userToken},
@@ -35,7 +29,7 @@ class MyFeedPage extends React.Component {
   render() {
     return (
       <div>
-        <NewPostForm onSubmitted={this.onPostSubmitted} />
+        <NewPostForm />
         <PostList ref={(ref) => {this.postList = ref}} />
       </div>
     )

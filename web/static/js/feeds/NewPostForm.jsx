@@ -22,7 +22,6 @@ class NewPostForm extends React.Component {
   static propTypes = {
     mutate: PropTypes.func.isRequired,
     userId: PropTypes.string.isRequired,
-    onSubmitted: PropTypes.func,
     profile: PropTypes.shape({
       picture: PropTypes.string
     }).isRequired
@@ -49,7 +48,6 @@ class NewPostForm extends React.Component {
       console.log('got data', data)
       this.setState({text: ""})
       this.refs.focusOverlay.blur()
-      if (this.props.onSubmitted) this.props.onSubmitted()
     }).catch((error) => {
       console.log('there was an error sending the query', error);
     });
