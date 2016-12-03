@@ -22,4 +22,8 @@ defmodule FilterBurst.Resolvers.Post do
 
     {:ok, Repo.all(query)}
   end
+
+  def get_post(_parent, params, _info) do
+    {:ok, Post |> Repo.get(params.id)}
+  end
 end

@@ -9,10 +9,22 @@ defmodule FilterBurst.FeedChannel do
   def broadcast_post(post) do
     Logger.info "broadcast post: #{inspect(post)}"
 
-    payload = %{
-      "text" => post.text
-    }
-    Logger.info "payload: #{inspect(payload)}"
+    postQuery = """
+      query  {
+        post(id: "#{post.id}") {
+          id
+          text
+          userId
+          user {
+            picture
+          }
+        }
+      }
+    """
+
+    {:ok, payload} = postQuery |> Absinthe.run(FilterBurst.Schema)
+
+    Logger.info "broadcast payload: #{inspect(payload)}"
 
     FilterBurst.Endpoint.broadcast("feed", "new_post", payload)
   end

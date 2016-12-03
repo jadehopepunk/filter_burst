@@ -35,5 +35,10 @@ defmodule FilterBurst.Schema do
     field :feed, list_of(:post) do
       resolve &FilterBurst.Resolvers.Post.feed/3
     end
+
+    field :post, :post do
+      arg :id, non_null(:id)
+      resolve &FilterBurst.Resolvers.Post.get_post/3
+    end
   end
 end
