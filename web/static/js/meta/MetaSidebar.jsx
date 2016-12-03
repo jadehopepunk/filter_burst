@@ -14,9 +14,16 @@ const MetaSidebar = (props) => (
       experience and we'll try and build a better
       social feed together.
     </p>
+    <p>
+      <strong>This sidebar doesn't do anything yet</strong> because we haven't started our
+      first experiment. First, we're working to ensure that while
+      have a steady feed of social data to experiment on.
+    </p>
     <div className={css(styles.feedSettingsContainer)}>
+      <div className={css(styles.exampleContainer)}>
+        <FeedSettings />
+      </div>
     </div>
-    <FeedSettings />
   </div>
 );
 
@@ -28,7 +35,10 @@ const styles = StyleSheet.create({
   feedSettingsContainer: {
     marginTop: 30,
     borderTop: '1px solid #999999',
-    paddingTop: 30,
+    paddingTop: 30
+  },
+  exampleContainer: {
+    opacity: 0.3
   }
 })
 
