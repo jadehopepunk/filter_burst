@@ -26,7 +26,8 @@ defmodule FilterBurst.Mixfile do
        :logger,
        :gettext,
        :phoenix_ecto,
-       :postgrex
+       :postgrex,
+       :extwitter
       ]]
   end
 
@@ -50,6 +51,8 @@ defmodule FilterBurst.Mixfile do
       {:poison, "~> 2.2.0"},
       {:absinthe_plug, "~> 1.2"},
       {:tesla, "~> 0.5.2"},
+      {:extwitter, "~> 0.7.2"},
+      {:oauth, github: "tim/erlang-oauth"}
    ]
   end
 
