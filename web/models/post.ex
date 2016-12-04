@@ -4,6 +4,8 @@ defmodule FilterBurst.Post do
   schema "posts" do
     field :user_id, :string
     field :text, :string
+    field :source, :string
+    field :origin_url, :string
 
     timestamps
   end

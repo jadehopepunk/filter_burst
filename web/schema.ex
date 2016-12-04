@@ -10,8 +10,8 @@ defmodule FilterBurst.Schema do
   end
 
   enum :post_source do
-    value :twitter
-    value :facebook
+    value :twitter, as: "twitter"
+    value :facebook, as: "facebook"
   end
 
   object :post do

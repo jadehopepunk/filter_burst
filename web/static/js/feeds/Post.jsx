@@ -6,9 +6,19 @@ import AvatarImage from '../auth/AvatarImage'
 class Post extends React.Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
+    source: PropTypes.string,
+    originUrl: PropTypes.string,
     user: PropTypes.shape({
       picture: PropTypes.string
-    }).isRequired
+    }).isRequired,
+  }
+
+  renderOriginLink() {
+    if (this.props.source == 'TWITTER') {
+      return <a href={this.props.originUrl} className={css(styles.sourceLink)}><img src="/images/external_brands/twitter_logo_blue_32.png" /></a>
+    } else {
+      return null
+    }
   }
 
   render() {
@@ -18,6 +28,7 @@ class Post extends React.Component {
         <div className={css(styles.content)}>
           {this.props.text && <p>{this.props.text}</p>}
         </div>
+        {this.renderOriginLink()}
       </div>
     )
   }
@@ -33,7 +44,13 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   content: {
-    marginLeft: 15
+    marginLeft: 15,
+    flex: 1,
+  },
+  sourceLink: {
+    ':hover': {
+      opacity: 0.5,
+    }
   }
 })
 

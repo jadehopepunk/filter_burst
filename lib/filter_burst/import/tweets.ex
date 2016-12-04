@@ -57,6 +57,16 @@ defmodule FilterBurst.Import.Tweets do
 
   def handle_info({:tweet, tweet}, state) do
     IO.puts "received tweet via handle info: #{inspect(tweet)}"
+
+    post = %FilterBurst.Post{
+      user_id: "twitter|10678612", #"twitter|#{tweet.user.id_str}",
+      text: tweet.text,
+      source: "twitter",
+      origin_url: "https://twitter.com/#{tweet.user.screen_name}/status/#{tweet.id_str}"
+    }
+    {:ok, post} = FilterBurst.Repo.insert(post)
+    FilterBurst.FeedChannel.broadcast_post(post)
+
     {:noreply, state}
   end
 end

@@ -13,6 +13,8 @@ const feedQuery = gql`
       user {
         picture
       }
+      source
+      originUrl
     }
   }
 `;
