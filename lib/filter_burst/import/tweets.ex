@@ -27,7 +27,6 @@ defmodule FilterBurst.Import.Tweets do
         case message do
           tweet = %ExTwitter.Model.Tweet{} ->
             send parent, {:tweet, tweet}
-            IO.puts "tweet = #{tweet.text}"
 
           deleted_tweet = %ExTwitter.Model.DeletedTweet{} ->
             send parent, {:deleted_tweet, deleted_tweet}
@@ -57,7 +56,7 @@ defmodule FilterBurst.Import.Tweets do
   end
 
   def handle_info({:tweet, tweet}, state) do
-    IO.puts "received tweet via handle info: #{inspect(tweete)}"
+    IO.puts "received tweet via handle info: #{inspect(tweet)}"
     {:noreply, state}
   end
 end
