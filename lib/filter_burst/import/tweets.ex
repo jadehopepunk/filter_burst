@@ -22,8 +22,23 @@ defmodule FilterBurst.Import.Tweets do
     IO.puts "handle start stream"
 
     pid = spawn_link fn ->
-      for tweet <- ExTwitter.stream_filter([track: "apple"]) do
-        IO.puts "received tweet: #{inspect(tweet)}"
+      for message <- ExTwitter.stream_filter([track: "apple"]) do
+        case message do
+          tweet = %ExTwitter.Model.Tweet{} ->
+            IO.puts "tweet = #{tweet.text}"
+
+          deleted_tweet = %ExTwitter.Model.DeletedTweet{} ->
+            IO.puts "deleted tweet = #{deleted_tweet.status[:id]}"
+
+          limit = %ExTwitter.Model.Limit{} ->
+            IO.puts "limit = #{limit.track}"
+
+          stall_warning = %ExTwitter.Model.StallWarning{} ->
+            IO.puts "stall warning = #{stall_warning.code}"
+
+          _ ->
+            IO.inspect message
+        end
       end
     end
 
