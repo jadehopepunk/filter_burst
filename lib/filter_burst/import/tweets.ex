@@ -21,13 +21,16 @@ defmodule FilterBurst.Import.Tweets do
   def handle_call(:start_stream, _from, state) do
     IO.puts "handle start stream"
 
+    parent = self()
     pid = spawn_link fn ->
       for message <- ExTwitter.stream_filter([track: "apple"]) do
         case message do
           tweet = %ExTwitter.Model.Tweet{} ->
+            send parent, {:tweet, tweet}
             IO.puts "tweet = #{tweet.text}"
 
           deleted_tweet = %ExTwitter.Model.DeletedTweet{} ->
+            send parent, {:deleted_tweet, deleted_tweet}
             IO.puts "deleted tweet = #{deleted_tweet.status[:id]}"
 
           limit = %ExTwitter.Model.Limit{} ->
@@ -51,5 +54,10 @@ defmodule FilterBurst.Import.Tweets do
     ExTwitter.stream_control(state.stream_pid, :stop)
 
     {:reply, :ok, Map.put(state, :stream_pid, nil)}
+  end
+
+  def handle_info({:tweet, tweet}, state) do
+    IO.puts "received tweet via handle info: #{inspect(tweete)}"
+    {:noreply, state}
   end
 end
